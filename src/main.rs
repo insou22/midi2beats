@@ -10,7 +10,7 @@ use std::cmp::Ordering;
 
 const RESOLUTION: usize = 8;
 
-#[derive(Eq)]
+#[derive(Eq, PartialEq, PartialOrd)]
 struct Note
 {
     octave: u8,
@@ -116,18 +116,6 @@ impl Ord for Note {
                 }
                 other => other
             }
-    }
-}
-
-impl PartialOrd for Note {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(self.cmp(other))
-    }
-}
-
-impl PartialEq for Note {
-    fn eq(&self, other: &Self) -> bool {
-        self.octave == other.octave && self.key == other.key
     }
 }
 
