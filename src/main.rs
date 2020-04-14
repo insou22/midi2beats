@@ -107,15 +107,15 @@ impl Handler for MidiParser
 }
 
 
-impl Ord for Note {
-    fn cmp(&self, other: &Self) -> Ordering {
+impl Ord for Note
+{
+    fn cmp(&self, other: &Self) -> Ordering
+    {
         match self.octave.cmp(&other.octave)
-            {
-                Ordering::Equal => {
-                    self.key.cmp(&other.key)
-                }
-                other => other
-            }
+        {
+            Ordering::Equal => self.key.cmp(&other.key),
+            other => other
+        }
     }
 }
 
