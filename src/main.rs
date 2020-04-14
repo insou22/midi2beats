@@ -8,7 +8,7 @@ use std::fmt::Formatter;
 use std::io::Write;
 use std::cmp::Ordering;
 
-const RESOLUTION: usize = 8;
+const RESOLUTION: usize = 4;
 
 #[derive(Eq, PartialEq, PartialOrd)]
 struct Note
@@ -85,7 +85,9 @@ impl Handler for MidiParser
                 octave, key
             };
 
-            for _ in 0..(delta_time * RESOLUTION as u32 / self.time_base as u32)
+            let gap = delta_time * RESOLUTION as u32 / self.time_base as u32;
+
+            for _ in 0..gap
             {
                 self.beats_track.push(Beat {
                     index: self.new_index(),
